@@ -11,6 +11,8 @@ include_once '../controllers/PagamentoController.php';
 include_once '../controllers/OrcamentoController.php';
 include_once '../controllers/RelatorioContasController.php';
 include_once '../controllers/TarefaManutencaoController.php';
+include_once __DIR__ . '/../controllers/AuthController.php';
+
 
 $database = new Database();
 $db = $database->getConnection();
@@ -25,6 +27,7 @@ $pagamentoController = new PagamentoController($db);
 $orcamentoController = new OrcamentoController($db);
 $relatorioContasController = new RelatorioContasController($db);
 $tarefaManutencaoController = new TarefaManutencaoController($db);
+$authController = new AuthController($db);
 
 
 // Rota base da API
@@ -136,6 +139,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
             case 'createTarefa':
                 $data = json_decode(file_get_contents("php://input"));
                 $tarefaManutencaoController->createTarefa($data);
+                break;
+            case 'login':
+                $authController->login();
                 break;
             default:
                 http_response_code(404);

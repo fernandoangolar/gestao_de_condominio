@@ -67,12 +67,14 @@
                 body: JSON.stringify({ email: email, password: password })
             })
             .then(response => {
+                console.log('Response status:', response.status);
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    return response.text().then(text => { throw new Error(text) });
                 }
                 return response.json();
             })
             .then(data => {
+                console.log('Response data:', data);
                 if (data.role === 'admin') {
                     window.location.href = '/admin/dashboard.html';
                 } else if (data.role === 'condomino') {
@@ -86,7 +88,7 @@
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Error:', error.message);
             });
         });
     </script>
