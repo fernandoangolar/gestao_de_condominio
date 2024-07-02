@@ -1,0 +1,13 @@
+/* Estilo customizado para centralizar a tabela */
+.full-height {
+    height: 100vh; /* 100% da altura da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Estilo para ajustar a largura máxima da tabela */
+.custom-table {
+    max-width: 800px; /* Defina o valor máximo de largura conforme necessário */
+    width: 100%;
+    margin: auto; /* Centraliza horizontalmente */
+}
